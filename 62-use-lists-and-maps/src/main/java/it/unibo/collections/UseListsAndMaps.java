@@ -2,6 +2,8 @@ package it.unibo.collections;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Example class using {@link List} and {@link Map}.
@@ -21,11 +23,18 @@ public final class UseListsAndMaps {
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
          */
+        final ArrayList<Integer> arr = new ArrayList<>();
+        for (int i = 1000; i < 2000; i++){
+            arr.add(i);
+        }
+
         /*
          * 2) Create a new LinkedList<Integer> and, in a single line of code
          * without using any looping construct (for, while), populate it with
          * the same contents of the list of point 1.
          */
+        final LinkedList<Integer> list = new LinkedList<>();
+        list.addAll(arr);
         /*
          * 3) Using "set" and "get" and "size" methods, swap the first and last
          * element of the first list. You can not use any "magic number".
