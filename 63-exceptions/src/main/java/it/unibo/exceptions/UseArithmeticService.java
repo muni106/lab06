@@ -50,7 +50,6 @@ public final class UseArithmeticService {
         try {
             server.sendData(message);
         } catch (Exception e) {
-            // TODO: handle exception
             final String msg = "OH NO ";
             System.out.println(msg + e);
         }
@@ -63,7 +62,14 @@ public final class UseArithmeticService {
          * This method should re-try to retrieve information from the provided server, catching all IOExceptions,
          * until it succeeds.
          */
-        return null;
+        try{
+            server.receiveResponse();
+        }catch (Exception e) {
+            final String msg = "No se bueno ";
+            System.out.println(msg + e);
+        }
+
+        return retryReceiveOnNetworkError(server);
     }
 
     private static void assertEqualsAsDouble(final String expected, final String actual) {
