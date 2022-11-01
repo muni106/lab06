@@ -14,7 +14,7 @@ public interface NetworkComponent {
      * @throws IOException if there is any (simulated) network error.
      */
     void sendData(String data) throws IOException;
-
+    
     /**
      * Tries to receive a response. May fail.
      *
