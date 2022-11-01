@@ -23,9 +23,15 @@ public final class UseListsAndMaps {
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
          */
+<<<<<<< HEAD
         final ArrayList<Integer> arrL = new ArrayList<>();
         for (int i = 1000; i < 2000; i++){
             arrL.add(i);
+=======
+        final ArrayList<Integer> arr = new ArrayList<>();
+        for (int i = 1000; i < 2000; i++){
+            arr.add(i);
+>>>>>>> 24be0a082e23de58a267d4053eaf518aa3b426d9
         }
 
         /*
@@ -33,9 +39,14 @@ public final class UseListsAndMaps {
          * without using any looping construct (for, while), populate it with
          * the same contents of the list of point 1.
          */
+<<<<<<< HEAD
         final LinkedList<Integer> lList = new LinkedList<>();
         lList.addAll(arrL);
 
+=======
+        final LinkedList<Integer> list = new LinkedList<>();
+        list.addAll(arr);
+>>>>>>> 24be0a082e23de58a267d4053eaf518aa3b426d9
         /*
          * 3) Using "set" and "get" and "size" methods, swap the first and last
          * element of the first list. You can not use any "magic number".
