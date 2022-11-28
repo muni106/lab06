@@ -6,11 +6,13 @@ package it.unibo.collections.social.impl;
 import it.unibo.collections.social.api.SocialNetworkUser;
 import it.unibo.collections.social.api.User;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,7 +38,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * In order to save the people followed by a user organized in groups, adopt
      * a generic-type Map:  think of what type of keys and values would best suit the requirements
      */
-
+    Map<String, Set<U>> follUsers = new HashMap<>();
     /*
      * [CONSTRUCTORS]
      *
@@ -79,8 +81,12 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
-        
-        return false;
+        Set<U> circleFriends = this.follUsers.get(circle);
+        if (circleFriends == null) {
+            circleFriends = new HashSet<>();
+            this.follUsers.put(circle, circleFriends);
+        }
+        return circleFriends.add(user);
     }
 
     /**
@@ -90,11 +96,23 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return null;
+        Collection<U> followedUsersInGroup = this.follUsers.get(groupName);
+        if (followedUsersInGroup != null) {
+            return new LinkedList<>(followedUsersInGroup);
+        }
+        return Collections.emptyList();
     }
 
     @Override
     public List<U> getFollowedUsers() {
-        return null;
+        List<U> followedUsers = new LinkedList<>();
+        Iterator <U> currentItr;
+        for (Set<U> circle : this.follUsers.values()){
+            currentItr = circle.iterator();
+            while (currentItr.hasNext()){
+                followedUsers.add(currentItr.next());
+            }
+        }
+        return followedUsers;
     }
 }
